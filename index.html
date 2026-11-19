@@ -33,10 +33,13 @@
             <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">Security in 4G and 5G Mobile Networks</h1>
             <p class="text-lg text-blue-400">Semestrální projekt do předmětu Základy bezpečnosti v komunikacích (ZBK)</p>
             
-            <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl shadow-lg mt-8">
-                <h2 class="text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Introduction</h2>
+            <div class="bg-gray-900 border border-gray-800 p-8 rounded-xl shadow-lg mt-8 space-y-4">
+                <h2 class="text-xl font-bold text-white border-b border-gray-700 pb-2">Introduction</h2>
                 <p class="text-gray-400">
-                    Mobilní sítě jsou kritickou infrastrukturou moderní společnosti. Od 4G generace přešly sítě na tzv. All-IP architekturu. Veškerý provoz, včetně hlasu (VoLTE), je přenášen formou IP paketů. Ačkoliv to přineslo obrovské zrychlení a úsporu hardwarových nákladů, telekomunikační sítě zdědily zranitelnosti počítačových sítí. Tento projekt detailně mapuje kryptografické nedostatky 4G sítí, které vedly k útokům na druhé (linkové) vrstvě, a analyzuje, jak 5G tyto problémy řeší pomocí asymetrické kryptografie a zabezpečení aplikačních rozhraní.
+                    Mobilní sítě dnes tvoří klíčovou kritickou infrastrukturu, na které stojí nejen běžná hlasová a datová komunikace, ale také bankovnictví, průmyslová automatizace, energetika či systémy integrovaného záchranného systému. S příchodem čtvrté generace (4G LTE) opustily mobilní sítě tradiční přepojování okruhů a přešly na čistou <strong class="text-gray-200">All-IP architekturu</strong>, ve které se i hlasové hovory (VoLTE) přenášejí formou IP paketů. Ačkoliv tato transformace přinesla výrazné zvýšení přenosových rychlostí, nižší latenci a snížení nákladů, zároveň způsobila, že telekomunikační sítě vedle tradičních hrozeb na rádiovém rozhraní zdědily i zranitelnosti klasických počítačových sítí.
+                </p>
+                <p class="text-gray-400">
+                    Cílem tohoto projektu je systematicky porovnat bezpečnostní architekturu sítí 4G (EPS) a 5G (SBA). Zaměřujeme se na konkrétní kryptografické a návrhové slabiny LTE – zejména nešifrovaný přenos trvalé identity uživatele (IMSI) a absenci ochrany integrity uživatelských dat, které umožnily realizaci útoků na druhé vrstvě. Následně analyzujeme, jak standardy 5G tyto nedostatky řeší pomocí asymetrické kryptografie (SUCI/ECIES), ochrany datové roviny (UPIP) a zabezpečení aplikačních rozhraní jádra. Teoretický rozbor doplňujeme praktickou analýzou signalizačních paketů vrstvy NAS v nástroji Wireshark a ukázkou obrany přímo na úrovni koncového zařízení.
                 </p>
             </div>
         </section>
@@ -121,7 +124,7 @@
         <section id="demo" class="space-y-12">
             <h2 class="text-2xl font-bold text-white flex items-center gap-3">
                 <span class="bg-blue-600 text-white w-8 h-8 rounded flex items-center justify-center text-sm">03</span> 
-                Vlastní názor a praktický přínos projektu
+                Vlastní přínos a praktická část projektu
             </h2>
 
             <!-- Analýza komunikace (Wireshark) -->
@@ -174,7 +177,6 @@
                     <h4 class="font-bold text-white text-lg mb-3">Blokování 2G sítí na úrovni modemu</h4>
                     <p class="text-sm text-gray-400 mb-4">Deaktivací podpory 2G v nastavení One UI je efektivně eliminován hlavní vektor pro IMSI catchery (Stingrays), které se uživatele snaží stáhnout do nezabezpečené GSM sítě bez vzájemné autentizace.</p>
                     <div class="flex justify-center bg-black/30 rounded py-4 border border-gray-800">
-                        <!-- U mobilních screenshotů na výšku občas stačí omezit maximální šířku, aby nebyly přes celou obrazovku gigantické -->
                         <img src="samsung-2g.jpg" alt="Vypnutí 2G v telefonu" class="max-w-xs md:max-w-md rounded border border-gray-700 shadow-md">
                     </div>
                 </div>
@@ -184,10 +186,17 @@
         <!-- CONCLUSION & REFERENCES -->
         <section id="conclusion" class="space-y-8 border-t border-gray-800 pt-10">
             <div>
-                <h2 class="text-2xl font-bold text-white mb-4">Conclusion & Vlastní názor</h2>
-                <div class="bg-blue-900/20 border-l-4 border-blue-500 p-6 text-sm text-gray-300 space-y-3">
-                    <p>Z kryptografického i systémového hlediska je 5G obrovským krokem vpřed. 3GPP adresovalo největší zranitelnosti LTE – implementací ECIES pro SUCI zabránilo sledování identity a přidáním UPIP znehodnotilo manipulační útoky jako aLTEr.</p>
-                    <p>Můj osobní názor je, že zavedením SBA se <strong>přesunulo těžiště bezpečnosti</strong>. Jádro 5G je standardní cloudovou aplikací využívající HTTP/2 a JSON. Hlavní hrozby tak nebudou pocházet z modifikace rádiových vln, ale ze zranitelností cloud-native prostředí, chybné konfigurace mTLS či chyb v API rozhraní.</p>
+                <h2 class="text-2xl font-bold text-white mb-4">Conclusion & Zhodnocení</h2>
+                <div class="bg-blue-900/20 border-l-4 border-blue-500 p-6 text-sm text-gray-300 space-y-4">
+                    <p>
+                        Z kryptografického i architektonického hlediska představuje přechod ze 4G na 5G zásadní bezpečnostní posun. Konsorcium 3GPP přímo adresovalo nejvážnější nedostatky LTE – zavedením asymetrického šifrování ECIES pro generování SUCI prakticky znemožnilo pasivní odchytávání trvalé identity uživatele na rádiové vrstvě a doplněním ochrany integrity uživatelských dat (UPIP) eliminovalo manipulační útoky typu aLTEr.
+                    </p>
+                    <p>
+                        Jak ale ukázala i naše praktická část, samotná existence silného standardu nezaručuje absolutní bezpečnost v reálném provozu. Dokud operátoři zachovávají zpětnou kompatibilitu se staršími generacemi sítí, zůstávají rizikem downgrade (bidding-down) útoky, proti kterým je nutné se bránit i na straně koncových zařízení – například vypnutím podpory 2G přímo na úrovni modemu. Stejně klíčová je důsledná produkční konfigurace, aby mechanismy jako SUCI skutečně využívaly šifrovací profily ECIES namísto nezabezpečeného NULL schématu.
+                    </p>
+                    <p>
+                        Z našeho pohledu je nejdůležitějším zjištěním to, že zavedením architektury SBA se <strong class="text-white">těžiště bezpečnosti mobilních sítí přesunulo z rádiových vln do cloudu</strong>. Jádro 5G se svou povahou stalo moderní distribuovanou aplikací postavenou na mikroslužbách, HTTP/2 a JSON. Největší budoucí hrozby proto pravděpodobně nebudou vyžadovat specializovaný SDR hardware v blízkosti oběti, ale budou cílit na chybnou konfiguraci cloud-native prostředí, nedostatečné vynucování mTLS či chyby v autorizaci a logice interních REST API.
+                    </p>
                 </div>
             </div>
 
