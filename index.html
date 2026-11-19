@@ -141,14 +141,24 @@
                     <img src="4g-imsi.jpg" alt="4G IMSI ve Wiresharku" class="w-full rounded border border-gray-700 shadow-md">
                 </div>
 
-                <!-- 5G Screenshot -->
+                <!-- 5G Screenshot (Testbed / NULL scheme) -->
                 <div class="max-w-4xl mx-auto bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-lg">
                     <div class="text-emerald-400 font-bold flex items-center gap-2 mb-3 text-lg">
                         <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
                         5G SA: Šifrovaný identifikační hash (SUCI)
                     </div>
-                    <p class="text-sm text-gray-400 mb-4">Zpráva <code class="text-gray-300">Registration request</code> využívá asymetrickou kryptografii (ECIES) pro ochranu permanentní identity (SUPI).</p>
+                    <p class="text-sm text-gray-400 mb-4">Zpráva <code class="text-gray-300">Registration request</code> využívá strukturu SUCI pro ochranu permanentní identity (SUPI).</p>
                     <img src="5g-suci.jpg" alt="5G SUCI ve Wiresharku" class="w-full rounded border border-gray-700 shadow-md">
+                </div>
+
+                <!-- 5G Screenshot (ECIES Profile A) -->
+                <div class="max-w-4xl mx-auto bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-lg">
+                    <div class="text-emerald-400 font-bold flex items-center gap-2 mb-3 text-lg">
+                        <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                        5G SA: Aktivní šifrování SUCI (ECIES Profile A)
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4">Ukázka produkčního nasazení s aktivním schématem <code class="text-gray-300">Profile A (1)</code>. Místo čitelného MSIN je v poli <code class="text-gray-300">Scheme output</code> přenášen asymetricky zašifrovaný řetězec (45 oktetů).</p>
+                    <img src="5g-ECIES.jpg" alt="5G SUCI ECIES Profile A ve Wiresharku" class="w-full rounded border border-gray-700 shadow-md">
                 </div>
             </div>
 
